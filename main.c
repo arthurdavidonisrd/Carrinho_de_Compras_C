@@ -3,12 +3,15 @@
 #include <string.h>
 
 #define MAX_ITENS 10
-#define QTD_PRODUTOS 5
+#define QTD_PRODUTOS 15
 
 int main() {
-    int codigos[] = {101, 102, 103, 104, 105};
-    char nomes[][20] = {"Arroz", "Feijao", "Macarrao", "Farinha", "Acucar"};
-    float precos[] = {5.5, 7.2, 4.0, 3.8, 2.5};
+    int codigos[] = {101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115};
+    char nomes[][20] = {"Arroz", "Feijao", "Macarrao", "Farinha", "Acucar",
+        "Café", "Leite", "Óleo", "Sal", "Biscoito",
+        "Molho", "Carne", "Frango", "Coca-Cola", "Sabão"};
+    float precos[] = {5.5, 7.2, 4.0, 3.8, 2.5, 9.0, 4.2, 6.5, 1.0, 3.2,
+                    2.8, 20.0, 15.0, 6.0, 2.0};
 
     int carrinho[MAX_ITENS][3]; 
     float subtotais[MAX_ITENS]; 
@@ -29,7 +32,7 @@ int main() {
             printf("Entrada inválida. Encerrando o programa.\n");
             break;
         }
-        if (!continuar) break;
+        if (!continuar) break;  
 
         if (itens_no_carrinho >= MAX_ITENS) {
             printf("Carrinho cheio! Limite de 10 itens atingido.\n");
@@ -69,8 +72,8 @@ int main() {
                 int atualizar;
                 scanf("%d", &atualizar);
                 if (atualizar == 1) {
-                    carrinho[i][1] = quantidade;
-                    subtotais[i] = precos[indice_produto] * quantidade;
+                    carrinho[i][1] += quantidade;
+                    subtotais[i] += precos[indice_produto] * quantidade;
                     printf("Quantidade atualizada!\n");
                 } else {
                     printf("Nenhuma alteração feita.\n");
