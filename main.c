@@ -10,8 +10,8 @@ int main() {
     char nomes[][20] = {"Arroz", "Feijao", "Macarrao", "Farinha", "Acucar"};
     float precos[] = {5.5, 7.2, 4.0, 3.8, 2.5};
 
-    int carrinho[MAX_ITENS][3]; // código, quantidade, índice
-    float subtotais[MAX_ITENS]; // subtotal por item
+    int carrinho[MAX_ITENS][3]; 
+    float subtotais[MAX_ITENS]; 
     int itens_no_carrinho = 0;
     int continuar = 1;
 
@@ -43,7 +43,7 @@ int main() {
             continue;
         }
 
-        // Verifica se o código existe
+        
         for (int i = 0; i < QTD_PRODUTOS; i++) {
             if (codigos[i] == codigo) {
                 indice_produto = i;
@@ -62,7 +62,6 @@ int main() {
             continue;
         }
 
-        // Verifica se o produto já está no carrinho
         int encontrado = 0;
         for (int i = 0; i < itens_no_carrinho; i++) {
             if (carrinho[i][0] == codigo) {
@@ -90,7 +89,6 @@ int main() {
             printf("Produto adicionado com sucesso!\n");
         }
 
-        // Mostrar carrinho atual
         printf("\n=== CARRINHO ATUAL ===\n");
         printf("Produto\t\tQtd\tPreço\tSubtotal\n");
         for (int i = 0; i < itens_no_carrinho; i++) {
@@ -99,30 +97,6 @@ int main() {
         }
     }
 
-    // Ordenar carrinho por nome (alfabética)
-    for (int i = 0; i < itens_no_carrinho - 1; i++) {
-        for (int j = i + 1; j < itens_no_carrinho; j++) {
-            int idx_i = carrinho[i][2];
-            int idx_j = carrinho[j][2];
-            if (strcmp(nomes[idx_i], nomes[idx_j]) > 0) {
-                
-                int temp0 = carrinho[i][0], temp1 = carrinho[i][1], temp2 = carrinho[i][2];
-                float temp_sub = subtotais[i];
-
-                carrinho[i][0] = carrinho[j][0];
-                carrinho[i][1] = carrinho[j][1];
-                carrinho[i][2] = carrinho[j][2];
-                subtotais[i] = subtotais[j];
-
-                carrinho[j][0] = temp0;
-                carrinho[j][1] = temp1;
-                carrinho[j][2] = temp2;
-                subtotais[j] = temp_sub;
-            }
-        }
-    }
-
-    // Exibir nota fiscal
     if (itens_no_carrinho == 0) {
         printf("\nNenhum item foi adicionado ao carrinho.\n");
     } else {
